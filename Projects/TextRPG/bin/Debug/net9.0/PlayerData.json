@@ -1,0 +1,14 @@
+{
+  "Name": "Chad",
+  "Health": 100,
+  "Class": 0,
+  "Level": 1,
+  "AttackPoint": 100,
+  "DefensePoint": 50,
+  "Inventories": [
+    0,
+    3
+  ],
+  "Equipments": [],
+  "Gold": 900
+}
