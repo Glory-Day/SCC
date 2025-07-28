@@ -28,7 +28,7 @@ namespace Backend.Object
             DataManager.Instance.StageData.Wrapper[index].Score = Mathf.Max(loaded, score);
             DataManager.Instance.Save();
             
-            GetComponent<PopUpPanel>().AddContent(text);
+            GetComponent<PopUpPanel>().SetContent(text);
         }
         
         public int Count { get; set; }

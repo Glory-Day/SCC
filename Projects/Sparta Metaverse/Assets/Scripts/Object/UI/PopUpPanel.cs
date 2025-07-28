@@ -39,6 +39,10 @@ namespace Backend.Object.UI
         
         private void OnEnable()
         {
+            _header.text = data.Header;
+            _content.text = data.Content;
+            _footer.text = data.Footer;
+            
             _controls.Enable();
             _controls.UI.Press.performed += TurnOff;
         }
@@ -52,12 +56,6 @@ namespace Backend.Object.UI
         public void TurnOn()
         {
             _screen.gameObject.SetActive(true);
-            
-            _header.text = data.Header;
-            _content.text = _builder.ToString();
-            _footer.text = data.Footer;
-            
-            _builder.Clear();
         }
 
         public void TurnOff(InputAction.CallbackContext context)
@@ -74,10 +72,14 @@ namespace Backend.Object.UI
             _screen.gameObject.SetActive(false);
         }
         
-        public void AddContent(string text)
+        public void SetContent(string text)
         {
-            _builder.Append(data.Contents);
+            _builder.Append(data.Content);
             _builder.Append(text);
+            
+            _content.text = _builder.ToString();
+            
+            _builder.Clear();
         }
     }
 }

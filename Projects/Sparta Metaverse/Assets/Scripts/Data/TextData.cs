@@ -10,12 +10,12 @@ namespace Backend.Data
         [SerializeField] private string header;
         
         [TextArea(3, 10)]
-        [SerializeField] private string contents;
+        [SerializeField] private string content;
         [SerializeField] private string footer;
         
         public string Header { get => header; set => header = value; }
         
-        public string Contents { get => contents; set => contents = value; }
+        public string Content { get => content; set => content = value; }
         
         public string Footer { get => footer; set => footer = value; }
     }

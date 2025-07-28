@@ -10,12 +10,12 @@ namespace Backend.Object
         [Header("Scene Settings")]
         [SerializeField] private int index;
 
-        private void Awake()
+        public void Load()
         {
             DataManager.Instance.Load();
 
             var score = DataManager.Instance.StageData.Wrapper[index].Score.ToString();
-            GetComponent<PopUpPanel>().AddContent(score);
+            GetComponent<PopUpPanel>().SetContent(score);
         }
     }
 }
