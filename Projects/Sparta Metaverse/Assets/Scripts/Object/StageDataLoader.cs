@@ -14,7 +14,7 @@ namespace Backend.Object
         {
             DataManager.Instance.Load();
 
-            var score = DataManager.Instance.StageData[index].Score.ToString();
+            var score = DataManager.Instance.StageData.Wrapper[index].Score.ToString();
             GetComponent<PopUpPanel>().AddContent(score);
         }
     }

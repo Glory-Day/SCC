@@ -24,8 +24,8 @@ namespace Backend.Object
 
             // If this is the highest score, save the data.
             var index = SceneManager.GetActiveScene().buildIndex - 1;
-            var loaded = DataManager.Instance.StageData[index].Score;
-            DataManager.Instance.StageData[index].Score = Mathf.Max(loaded, score);
+            var loaded = DataManager.Instance.StageData.Wrapper[index].Score;
+            DataManager.Instance.StageData.Wrapper[index].Score = Mathf.Max(loaded, score);
             DataManager.Instance.Save();
             
             GetComponent<PopUpPanel>().AddContent(text);

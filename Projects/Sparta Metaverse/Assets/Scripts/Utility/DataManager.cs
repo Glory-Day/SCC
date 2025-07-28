@@ -23,11 +23,15 @@ namespace Utility
         {
             if (File.Exists(GetPersistentDataPath(nameof(StageData))) == false)
             {
-                var data = new [] { new StageData(), new StageData() };
-                JsonSerializer.Serialize(GetPersistentDataPath(nameof(StageData)), new StageData());
+                var data = new StageDataWrapper
+                           {
+                               Wrapper = new [] { new StageData(), new StageData() }
+                           };
+                
+                JsonSerializer.Serialize(GetPersistentDataPath(nameof(StageData)), data);
             }
             
-            StageData = JsonSerializer.Deserialize<StageData[]>(GetPersistentDataPath(nameof(StageData)));
+            StageData = JsonSerializer.Deserialize<StageDataWrapper>(GetPersistentDataPath(nameof(StageData)));
         }
 
         public void Save()
@@ -35,6 +39,6 @@ namespace Utility
             JsonSerializer.Serialize(GetPersistentDataPath(nameof(StageData)), StageData);
         }
 
-        public StageData[] StageData { get; set; }
+        public StageDataWrapper StageData { get; set; }
     }
 }
