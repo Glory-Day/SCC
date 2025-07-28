@@ -10,13 +10,8 @@ namespace TextRPG.Object.Scene
         {
             Data = data;
 
+            Command = null;
             Iterators = new Iterable[data.Indexes.Length];
-
-            Commands = new Dictionary<int, Action?>();
-            for (var i = data.Menus.Length - data.Indexes.Length + 1; data.Menus.Length < i; i++)
-            {
-                Commands.Add(i, null);
-            }
         }
 
         public Iterable GetNextIterator(int index) => Iterators[index];
@@ -45,19 +40,14 @@ namespace TextRPG.Object.Scene
         }
 
         public virtual void Reset() { }
-
-        public bool IsValidKey(int index)
-        {
-            return Commands.ContainsKey(index);
-        }
         
-        public bool IsValidIndex(int index)
+        public bool IsValidKey(int index)
         {
             return 0 <= index && index < Data.Indexes.Length;
         }
         
         public Iterable[] Iterators { get; }
 
-        public Dictionary<int, Action?> Commands { get; }
+        public Command? Command { get; protected set; }
     }
 }

@@ -52,18 +52,27 @@ public class SceneManager
         _currentScene.Render();
     }
 
-    public void Execute(int key)
+    public bool Execute(int key)
     {
-        _currentScene?.Commands[key]?.Invoke();
+        if (_currentScene is null)
+        {
+            return false;
+        }
+
+        if (_currentScene.Command is PageCommand command)
+        {
+            command.Execute(key);
+        }
+        else
+        {
+            _currentScene.Command?.Execute(key);
+        }
+
+        return false;
     }
     
-    public bool IsValidKey(int key)
+    public bool IsValidKey(int index)
     {
-        return _currentScene?.IsValidKey(key) ?? false;
-    }
-    
-    public bool IsValidIndex(int index)
-    {
-        return _currentScene?.IsValidIndex(index) ?? false;
+        return _currentScene?.IsValidKey(index) ?? false;
     }
 }

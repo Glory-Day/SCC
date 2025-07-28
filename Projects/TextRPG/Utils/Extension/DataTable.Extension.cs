@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace TextRPG
+namespace TextRPG.Utils.Extension
 {
     public static class DataTableExtensions
     {

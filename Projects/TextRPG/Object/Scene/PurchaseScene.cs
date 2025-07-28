@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using TextRPG.Data;
+using TextRPG.Utils.Extension;
 
 namespace TextRPG.Object.Scene;
 
@@ -14,22 +15,9 @@ public class PurchaseScene : Scene
     {
         _table = new DataTable();
 
-        Commands[1] = ToNextPage;
-        Commands[2] = ToPreviousPage;
-
-        for (var i = 3; i < DataManager.Instance.EquipmentData.Length; i++)
-        {
-            var index = i;
-            Commands[i] = () =>
-                          {
-                              DataManager.Instance.PlayerData.Inventories.Add(index - 3);
-                              DataManager.Instance.PlayerData.Gold -= DataManager.Instance.EquipmentData[index - 3].Price;
-                              
-                              DataManager.Instance.SaveData();
-                              
-                              Render();
-                          };
-        }
+        Command = new PageCommand();
+        Command.Callbacks.Add(ConsoleKey.RightArrow.ToInt(), ToNextPage);
+        Command.Callbacks.Add(ConsoleKey.LeftArrow.ToInt(), ToPreviousPage);
     }
     
     public override void Render()
@@ -48,7 +36,7 @@ public class PurchaseScene : Scene
         for (var i = 0; i < equipmentData.Length; i++)
         {
             _table.Rows.Add(
-                equipmentData[i].Name.WordWrap(15),
+                equipmentData[i].Name,
                 $"{Data.Contents[equipmentData[i].Type + 5]}(+{equipmentData[i].Point[equipmentData[i].Type]})",
                 equipmentData[i].Description.WordWrap(43),
                 playerData.Inventories.Contains(i) ? Data.Contents[7] : equipmentData[i].Price);

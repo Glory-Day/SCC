@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using TextRPG.Data;
+using TextRPG.Utils.Extension;
 
 namespace TextRPG.Object.Scene;
 
@@ -14,8 +15,9 @@ public class StoreScene : Scene
     {
         _table = new DataTable();
 
-        Commands[3] = ToNextPage;
-        Commands[4] = ToPreviousPage;
+        Command = new PageCommand();
+        Command.Callbacks.Add(ConsoleKey.RightArrow.ToInt(), ToNextPage);
+        Command.Callbacks.Add(ConsoleKey.LeftArrow.ToInt(), ToPreviousPage);
     }
 
     public override void Render()

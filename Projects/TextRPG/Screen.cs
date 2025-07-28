@@ -1,3 +1,5 @@
+using TextRPG.Utils.Extension;
+
 namespace TextRPG
 {
     public static class Screen

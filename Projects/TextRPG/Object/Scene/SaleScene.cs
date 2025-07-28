@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using TextRPG.Data;
+using TextRPG.Utils.Extension;
 
 namespace TextRPG.Object.Scene;
 
@@ -14,8 +15,9 @@ public class SaleScene : Scene
     {
         _table = new DataTable();
 
-        Commands[3] = ToNextPage;
-        Commands[4] = ToPreviousPage;
+        Command = new PageCommand();
+        Command.Callbacks.Add(ConsoleKey.RightArrow.ToInt(), ToNextPage);
+        Command.Callbacks.Add(ConsoleKey.LeftArrow.ToInt(), ToPreviousPage);
     }
     
     public override void Render()
@@ -27,20 +29,21 @@ public class SaleScene : Scene
         
         Screen.Write($"{Data.Contents[0]}{playerData.Gold.ToString()} ", Screen.Layout.Content - 1);
         
-        _table.Columns.Add(Data.Contents[1], typeof(List<string>));
+        _table.Columns.Add(Data.Contents[1], typeof(string));
         _table.Columns.Add(Data.Contents[2], typeof(string));
         _table.Columns.Add(Data.Contents[3], typeof(List<string>));
         _table.Columns.Add(Data.Contents[4], typeof(string));
-        for (var i = 0; i < equipmentData.Length; i++)
+        for (var i = 0; i < playerData.Inventories.Count; i++)
         {
+            var index = playerData.Inventories[i];
             _table.Rows.Add(
-                equipmentData[i].Name.WordWrap(15), 
-                $"{Data.Contents[equipmentData[i].Type + 5]}(+{equipmentData[i].Point[equipmentData[i].Type]})",
-                equipmentData[i].Description.WordWrap(48),
-                playerData.Equipments.Contains(i) ? Data.Contents[7] : equipmentData[i].Price);
+                equipmentData[index].Name, 
+                $"{Data.Contents[equipmentData[index].Type + 5]}(+{equipmentData[index].Point[equipmentData[index].Type]})",
+                equipmentData[index].Description.WordWrap(48),
+                (int)(equipmentData[i].Price * 0.85f));
         }
         
-        var table = _table.ToList(equipmentData.Length);
+        var table = _table.ToList(equipmentData.Length, true);
         while ((table.Count - 3) % 9 != 0)
         {
             table.Insert(table.Count - 1, table[2]);
@@ -76,7 +79,7 @@ public class SaleScene : Scene
         _index = 2;
         _length = 0;
     }
-
+    
     private void ToNextPage()
     {
         if (_index + 9 <= _length)

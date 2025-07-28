@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace TextRPG
+namespace TextRPG.Utils.Extension
 {
     public static class StringExtensions
     {
@@ -47,11 +47,15 @@ namespace TextRPG
             return list;
         }
         
+        /// <param name="text">String to display.</param>
+        /// <returns>Length of string graphically displayed on the console.</returns>
         public static int GetGraphicLength(this string text)
         {
             return text.Sum(ch => ch.GetGraphicLength());
         }
 
+        /// <param name="text">String to display.</param>
+        /// <returns>Logical length of Unicode string.</returns>
         public static int GetUnicodeLength(this string text)
         {
             return text.Sum(ch => ch.GetUnicodeLength());

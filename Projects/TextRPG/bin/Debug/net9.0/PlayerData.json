@@ -6,9 +6,8 @@
   "AttackPoint": 100,
   "DefensePoint": 50,
   "Inventories": [
-    0,
-    3
+    0
   ],
   "Equipments": [],
-  "Gold": 900
+  "Gold": 960
 }

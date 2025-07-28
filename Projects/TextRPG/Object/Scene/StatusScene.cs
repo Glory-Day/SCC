@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using TextRPG.Data;
+using TextRPG.Utils.Extension;
 
 namespace TextRPG.Object.Scene;
 
