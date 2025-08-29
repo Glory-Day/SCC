@@ -4,11 +4,6 @@ namespace Backend.Utils.Management
 {
     public class GameManager : Singleton<GameManager>
     {
-        private void Awake()
-        {
-            Character = new Character();
-        }
-
         private void OnEnable()
         {
             UIManager.Instance.MainMenuPresenter.IDText = Character.ID;
@@ -16,7 +11,7 @@ namespace Backend.Utils.Management
             UIManager.Instance.MainMenuPresenter.GoldText = $"{Character.Gold}";
         }
 
-        public Character Character { get; private set; }
+        public Character Character { get; private set; } = new Character();
     }
 }
 
