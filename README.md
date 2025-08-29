@@ -2,12 +2,10 @@
 
 ## Project
 
-### Chapter 05
-
-|3D Survival|
-|---|
-|![thumbnail](./.resources)|
-|[README](https://github.com/Glory-Day/SCC/blob/master/Projects/3D%20Survival/READMD.md)|
+|Text RPG|Sparta Metaverse|3D Survival|Inventory|
+|---|---|---|---|
+|[Directory](https://github.com/Glory-Day/SCC/tree/master/Projects/TextRPG)|[Directory](https://github.com/Glory-Day/SCC/tree/master/Projects/Sparta%20Metaverse)|[Directory](https://github.com/Glory-Day/SCC/blob/master/Projects/3D%20Survival)|[Directory](https://github.com/Glory-Day/SCC/blob/master/Projects/Inventory)|
+|||[README.md](https://github.com/Glory-Day/SCC/blob/master/Projects/3D%20Survival/READMD.md)|[README.md](https://github.com/Glory-Day/SCC/blob/master/Projects/Inventory/READMD.md)|
 
 ## Today I Learned
 
